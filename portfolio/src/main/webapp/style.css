@@ -1,9 +1,366 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
-}
-
 #greeting-container {
   margin-top: 20px;
+}
+
+
+/* Header styling */
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    background-color: #e9e9e9;
+    height: 80px;
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 15px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 1px 0px 0px;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.homeButton {
+    display: inline-flex;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 14px 16px;
+    line-height: 4;
+    width: 15%;
+    float: left;
+    font-size: 18px;
+}
+
+.navButtons {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: center;
+}
+
+.navButton {
+    line-height: 4;
+    float: left;
+    display: inline-flex;
+    text-align: center;
+    padding-right: 25px;
+    padding-left: 40px;
+    font-size: 18px;
+}
+
+.navButtons a {
+    text-decoration: none;
+    color: gray;
+}
+
+.navButtons a:hover {
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    color: black;
+    cursor: pointer;
+}
+
+/* Footer styling */
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 0.5%; */
+    padding-left: 150px;
+    background-color: #141413;
+    color: white;
+    font-family: Tahoma, Geneva, sans-serif;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+}
+
+.contactLinks {
+    padding-right: 30px;
+    padding-top: 20px;
+}
+
+.contactInfo {
+    padding-left: 40px;
+}
+
+.githubLogo {
+    width: 40px;
+    height: auto;
+}
+
+.linkedInLogo {
+    width: 40px;
+    height: auto;
+}
+
+/* Personal background styling */
+
+.personalBackground {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: auto;
+    width: 60%;
+    margin-top: 35px;
+    align-items: center;
+    align-self: center;
+    justify-content: space-around;
+    margin-left: 50px;
+    margin-right: 50px;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-style: solid;
+    border-width: 1pt;
+    border-radius: 6pt;
+    border-color: lightgray;
+}
+
+.noahImage {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    border-style: transparent;
+    border-radius: 9px;
+    border-width: 3px;
+    padding: 0px;
+    margin-right: 10px;
+}
+
+.personalText {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+/* Projects styling */
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.5%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 3%;
+}
+
+.projectEntry {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+    border-style: solid;
+    border-width: 1pt;
+    border-radius: 6pt;
+    border-color: lightgray;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectImage {
+    width: 30%;
+    height: auto;
+}
+
+.projectDescription {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+/* Projects styling */
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.5%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 3%;
+}
+
+.projectEntry {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 0.5pt;
+    border-radius: 6pt;
+    width: 50%;
+    border-color: lightgray;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectImage {
+    width: 30%;
+    height: auto;
+}
+
+.projectDescription {
+    width: 60%;
+    height: auto;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+/* Blog styling */
+
+.blogContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.blogEntry {
+    border-style: solid;
+    border-width: 2px;
+    border-color: lightgray;
+    box-shadow: 5px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    width: 60%;
+}
+
+.blogHeaderContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: Verdana, Geneva, sans-serif;
+    width: 100%;
+}
+
+.blogDate {
+    display: flex;
+    align-self: flex-end;
+    padding-right: 1%;
+}
+
+.blogTitle {
+    display: flex;
+    align-self: flex-start;
+    padding-left: 1%;
+}
+
+.blogContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+}
+
+/* Photo Gallery Styling */
+
+.galleryContainer {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+#photoViewArea {
+    /* position: relative; */
+    width: 900px;
+    height: 700px;
+    padding: 4%;
+}
+
+#rightArrow {
+    padding-left: 3%;
+}
+
+.preferencesContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.leftPhotoExplanation {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+
+.leftPhotoExplanation img {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    width: 50%;
+    /* height: 50%; */
+    padding: 0;
+    margin: 0;
+}
+
+.rightPhotoExplanation {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.rightPhotoExplanation img {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    width: 50%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.photoTextContainer {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    background-color: #4f5f82;
+    font-family: Verdana, Geneva, sans-serif;
+    /* width: 50vw;
+    height: 50vh; */
+    padding: 10%;
+}
+
+/* Body styling */
+
+body {
+    padding: 0;
+    margin: 0;
+    min-width: 100%;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 280px);
+    justify-content: center;
+    align-items: center;
 }
