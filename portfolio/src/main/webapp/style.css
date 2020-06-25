@@ -82,6 +82,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
+    height: 200px;
 }
 
 .contactLinks {
@@ -109,4 +110,9 @@ body {
     padding: 0;
     margin: 0;
     font-family: Verdana, Geneva, sans-serif;
+}
+
+.content {
+    min-height: calc(100vh - 280px);
+    /* 80px header + 200px footer = 280px  */
 }
