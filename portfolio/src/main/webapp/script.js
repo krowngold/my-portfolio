@@ -17,7 +17,10 @@
  */
 function addRandomGreeting() {
   const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+      ['I earned my Eagle Scout rank at 14 years old!', 
+      'In the fourth grade I won 4th place in a local chess tournament', 
+      "I played varsity tennis in high school", 
+      'I have been to 11 states!'];
 
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
@@ -25,4 +28,70 @@ function addRandomGreeting() {
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
+};
+
+{
+
+    function imageCache() {
+        /*
+            Create an object that stores the location of all images I want to use
+        */
+        this.cache = [
+            "../images/noah.png",
+            "../images/canada.jpg",
+            "../images/coulon.jpg",
+            "../images/denver.jpg",
+            "../images/lion.jpg",
+            "../images/seattle.jpg",
+            "../images/uwfriends.jpg"
+        ];
+        this.index = 0;
+        this.img = this.cache[this.index];
+    };
+
+    imageCache.prototype.decreasePicture = function(id) {
+        /*
+            Move to the previous image in the cache
+        */
+        let element = document.getElementById(id);
+        this.index--;
+        if (this.index < 0) {
+            this.index = this.cache.length - 1;
+        }
+        this.img = this.cache[this.index];
+        element.src = this.img;
+    };
+
+    imageCache.prototype.increasePicture = function(id) {
+        /*
+            Move to the next image in the cache
+        */
+        let element = document.getElementById(id);
+        this.index++;
+        if (this.index >= this.cache.length) {
+            this.index = 0;
+        }
+        this.img = this.cache[this.index];
+        element.src = this.img;
+    };
+
+    imageCache.prototype.getImage = function(id) {
+        /*
+            Get the image the cache currently points to
+        */
+        let element = document.getElementById(id);
+        let imgCache = new imageCache();
+        element.src = imgCache.cache[imgCache.index];
+        return imgCache.cache[imgCache.index];
+    }
+
+    window.onload = function() {
+        /*
+            Prepare the main photo in the photoViewArea
+        */
+        let id = "photoViewArea";
+        let el = document.getElementById("photoViewArea");
+        let imgc = new imageCache();
+        el.src = imgc.getImage(id);
+    }
 }
