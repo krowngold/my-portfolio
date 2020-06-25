@@ -7,7 +7,9 @@
     <script src="script.js"></script>
   </head>
   <body>
+
     <!-- Header of portfolio, includes links to other pages in portfolio -->
+
     <div class="navbar">
         <div class="navButtons">
             <div class="homeButton">
@@ -21,14 +23,90 @@
             </div>
         </div>
     </div>
-    <div id="content">
-      <h1>Noah's Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>I'm a computer science major at the University of Washington in Seattle.</p>
-      <img src="/images/noah.png" alt="A picture of Noah from Korea!">
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <div class="content">
+
+        <!-- Introduction to myself (personal background) -->
+        
+        <div class="personalBackground">
+            <img class="noahImage" src="../images/noah.png" alt="A picture of Noah Krohngold">
+            <div class="personalText">
+                <h1>About me</h1>
+                <p>
+                    Hi! I'm Noah Krohngold. I'm a computer science major at the
+                    University of Washington. Throughout my education, I've been
+                    involved in a variety of activities like DECA and FBLA (two
+                    marketing clubs), FIRST Robotics, the Boy Scouts of America,
+                    and Google's CSSI. I'm really into basketball and I play
+                    tennis in my free-time. At UW, I'm involved with UW ACM and
+                    the Korean Student Association. I also review movies when I
+                    get the chance, but I'm working on transitioning these reviews
+                    into a YouTube channel. Thanks for visiting!
+                </p>
+            </div>   
+        </div> 
+
+        <!-- Description of my personal projects -->
+
+        <div class="projects">
+            <div class="projectsIntro">
+                <h2>Personal Projects</h2>
+            </div>
+
+            <div class="projectEntry">
+                <div class="projectImage">
+                    <img class="ttsImage" src="../images/tts.png" alt="Twitter Trend Sentiment logo">
+                </div>
+                <div class="projectDescription">
+                    <p>
+                        The American Psyche - internally known as Twitter Trend Sentiment utilized
+                        <span style="color:#025dad">Twitter's Trending Topics API</span> and 
+                        <span style="color:#025dad">Google's Natural Language Processing API</span>
+                        to determine the sentiment of a trending topic. Users could search for major
+                        cities and observe whether or not the summation of all teh city's trending
+                        topics resulted in a positive, neutral, or sad/angry attitude. This project
+                        was developed at Google's CSSI in 2019 in collaboration with Ethan Buranday
+                        and Jason Li.
+                    </p>
+                </div>
+            </div>
+            <div class="projectEntry">
+                <div class="projectImage">
+                    <img class="servImage" src="../images/serv.png" alt="Serv logo">
+                </div>
+                <div class="projectDescription">
+                    <p>
+                        Serv gave any business or group that queues customers easy cacess to basic
+                        business metrics as well as customer management. Groups that partnered with
+                        Serv would receive an NFC tag that patrons would activate with their phone
+                        and enter their contact infomration into upon being redirected to our
+                        website, allowing the user to continue their day elsewhere while waiting for
+                        their appointment or reservation. Once the business had an opening for the
+                        patron, they would receive a text informing the patron to return to the
+                        business soon, or their spot would be forfeited. This project was developed
+                        at NWHacks 2020 in collaboration with Johnny Li, Byeongjun Moon, Maya Evans,
+                        and Frank Whoee.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer for related links and contact information -->
+
+    <div class="footer">
+        <div class="contactLinks">
+            <a href="https://github.com/krowngold">
+                <img class="githubLogo" src="../images/github.png" alt="Noah's GitHub profile">
+            </a>
+            <a href="https://www.linkedin.com/in/noah-k">
+                <img class="linkedInLogo" src="../images/linked.png" alt="Noah's LinkedIn profile">
+            </a>
+        </div>
+        <div class="contactInfo">
+            <h4>Contact me</h4>
+            <h5>Noah Krohngold<br>(425)591-9823<br>Noah.Krohngold@gmail.com<br>
+                University of Washington Computer Science and Engineering</h5>
+        </div>
     </div>
   </body>
 </html>
