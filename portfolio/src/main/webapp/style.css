@@ -65,3 +65,54 @@
     color: black;
     cursor: pointer;
 }
+
+/* Footer styling */
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5%;
+    padding-left: 150px;
+    background-color: #141413;
+    color: white;
+    font-family: Tahoma, Geneva, sans-serif;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+}
+
+.contactLinks {
+    padding-right: 30px;
+    padding-top: 20px;
+}
+
+.contactInfo {
+    padding-left: 40px;
+}
+
+.githubLogo {
+    width: 40px;
+    height: auto;
+}
+
+.linkedInLogo {
+    width: 40px;
+    height: auto;
+}
+
+/* Body styling */
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.content {
+    min-height: calc(100vh - 280px);
+    /* 80px header + 200px footer = 280px  */
+}
