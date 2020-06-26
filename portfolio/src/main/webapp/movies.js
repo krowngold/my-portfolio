@@ -1,5 +1,9 @@
 {
     function movieGenerator() {
+        /*
+            Object to construct all the movie reviews I've uploaded with the
+            most recent review being at the top of the reviewJSON field.
+        */
         this.reviewJSON = JSON.stringify({
             darkFate : {
                 title: "Terminator: Dark Fate",
@@ -76,6 +80,11 @@
     }
 
     movieGenerator.prototype.getReviews = function() {
+        /*
+            Parses JSON from constructed object and converts it to an array
+            of elements, where that array is stored in another array to be 
+            returned as the result of the function
+        */
         let result = [];
         let parsedJSON = JSON.parse(this.reviewJSON);
         for (var review in parsedJSON) {
@@ -89,6 +98,9 @@
     }
 
     movieGenerator.prototype.loadHTML = function(reviews) {
+        /*
+            Convert reviews contained in the array and converts it to HTML format.
+        */
         let reviewContainerDiv = document.getElementById("reviewPageContainer");
         for (let i = 0; i < reviews.length; i++) {
             let viewTemplate = [
