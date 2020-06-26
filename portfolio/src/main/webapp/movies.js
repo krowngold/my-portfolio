@@ -131,12 +131,12 @@
         }
     }
 
-    window.onload = function() {
+    window.addEventListener('load', (event) => {
         console.log("CREATING displayReviews");
         let displayReviews = new movieGenerator();
         console.log("CREATING reviews");
         let reviews = displayReviews.getReviews();
         console.log("LOADING HTML");
         displayReviews.loadHTML(reviews);
-    }
+    }); 
 }
