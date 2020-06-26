@@ -1,6 +1,10 @@
 {
 
     function blogSetup() {
+        /*
+            Contains all the necessary information about a blog post, with
+            the most recent post being the at the top of the variable.
+        */
         this.blogJSON = JSON.stringify({
             blog1 : {
                 "title" : "Thoughts On Filming Dialogue",
@@ -69,6 +73,11 @@
     }
 
     blogSetup.prototype.getBlogs = function () {
+        /*
+            Read through JSON initialized in constructor and return the elements of the blog
+            in an array of the format [title, date, content] where each array is a subarray
+            of the result 
+        */
         let result = [];
         let parsedJSON = JSON.parse(this.blogJSON);
         for (var blog in parsedJSON) {
@@ -80,6 +89,9 @@
     }
 
     blogSetup.prototype.loadHTML = function(blogs) {
+        /*
+            Take array from getBlogs and convert each blog array into HTML
+        */
         let blogContainerDiv = document.getElementById("blogContainer");
         for (let i = 0; i < blogs.length; i++) {
             let viewTemplate = [
