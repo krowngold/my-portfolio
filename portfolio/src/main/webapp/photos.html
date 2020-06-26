@@ -6,9 +6,10 @@
         <link rel="stylesheet" href = "style.css">
     </head>
     <body>
+    <script src="script.js"></script>
     <script src="footer.js"></script>
     <!-- Header of portfolio, includes links to other pages in portfolio -->
-    <div class="navbar">
+    <div class="navbar" id="nav">
         <div class="navButtons">
             <div class="homeButton">
                 <a class="navButton" href="index.html">Noah Krohngold</a>
@@ -18,6 +19,94 @@
                 <a class="navButton" href="photos.html">Photography</a>
                 <a class="navButton" href="blog.html">Blog</a>
                 <a class="navButton" href="movies.html">Movie Reviews</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        
+        <!-- Where photos will be displayed and the controls for switching between photos -->
+        <script type="text/javascript">
+            let imgc = new imageCache();
+        </script>
+        <div class="galleryContainer">
+            <div class="arrow" id="leftArrow">
+                <img onclick="imgc.decreasePicture('photoViewArea')" src="../images/leftArrow.png">
+            </div>
+            <div class="photoViewer">
+                <img id="photoViewArea">
+            </div>
+            <div class="arrow" id="rightArrow">
+                <img onclick="imgc.increasePicture('photoViewArea')" src="../images/rightArrow.png">
+            </div>
+        </div>
+
+        <!-- Where I explain my photography preferences -->
+
+        <div class="preferencesContainer">
+            <div class="leftPhotoExplanation">
+                <img alt="photoChoice1" src="../images/trees.jpg">
+                <div class="photoTextContainer">
+                    <h4>
+                        Having grown up in the suburbs of Seattle, I've been lucky enough
+                        to experience the lush environments of the Cascade mountain range.
+                        My participation in the Boy Scouts of America also gave me plenty
+                        of exposure to wildlife, and as such I enjoy taking pictures of
+                        trees and mountains. Nature provides an excellent break from 
+                        technology, and while it seems ironic that I use technology to 
+                        capture the moment I like to take a little piece of nature back
+                        home with me after a trip.
+                    </h4>
+                </div>
+            </div>
+            <div class="rightPhotoExplanation">
+                <div class="photoTextContainer">
+                    <h4>
+                        While they don't always make for the best picture, any time where
+                        there's open water with the sun or the moon I race for my camera.
+                        I live near a popular park that sits on the Puget Sound, so photos
+                        of the Sound dominate my photo gallery. I have a lot of fond 
+                        memories at this park, and the nearby boat launch area features
+                        a kayak rental shop. The area around the park sees a lot of
+                        investment today, with hotels and residencies opening up to 
+                        increase interest in the area, and given the views available I
+                        think that interest and investment is warranted.
+                    </h4>
+                </div>
+                <img alt="photoChoice2" src="../images/coulon2.jpg">
+            </div>
+            <div class="leftPhotoExplanation">
+                <img alt="photoChoice3" src="../images/temple.jpg">
+                <div class="photoTextContainer">
+                    <h4>
+                        Monuments and cultural structures always capture my attention. The
+                        history and effort put into each building once made me want to
+                        pursue architecture, but seeing as my artistic skills aren't
+                        exactly the best I decided to keep my admiration of architecture
+                        while moving onto other career prospects. I took this picture
+                        while I was in Korea, and this mini-temple sits on a backroad within
+                        Seoul. Strangely, on the other side of the street are apartment
+                        complexes and just down the road is a bustling night market, so 
+                        this structure doesn't really fit anywhere.
+                    </h4>
+                </div>
+            </div>
+            <div class="rightPhotoExplanation">
+                <div class="photoTextContainer">
+                    <h4>
+                        Ever since night-photography became so easy with smartphones, I
+                        snap a picture whenever there's something worthy of a picture,
+                        often resulting in a cool effect where the prominent color in
+                        frame blows up and floods the photo. UW's quad is seen here, 
+                        where instead of the iconic cherry blossoms during Spring the
+                        glaze on the brick pathways create a cool reflection of the 
+                        nearby lights while the snow contrasts the dark aspect of the
+                        image. My only disappointment is that the left part of the image
+                        with the trees gets blown out because there either wasn't
+                        enough light or the exposure wasn't long enough.
+                    </h4>
+                </div>
+                <img alt="photoChoice4" src="../images/quad.jpg">
             </div>
         </div>
     </div>
