@@ -113,13 +113,13 @@
         }
     }
 
-    window.onload = function() {
+    window.addEventListener('load', (event) => {
         console.log("CREATING displayBlogs");
         let displayBlogs = new blogSetup();
         console.log("CREATING blogs");
         let blogs = displayBlogs.getBlogs();
         console.log("LOADING HTML");
         displayBlogs.loadHTML(blogs);
-    }
+    });
 
 }
