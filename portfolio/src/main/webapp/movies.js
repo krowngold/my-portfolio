@@ -92,7 +92,7 @@
         let reviewContainerDiv = document.getElementById("reviewPageContainer");
         for (let i = 0; i < reviews.length; i++) {
             let viewTemplate = [
-                '<div class="reviewContainer">' +
+                '<div class="reviewContainer" id="' + reviews[i][0] + '">' +
                 '<div class="movieInfoContainer">' +
                     '<div class="movieTitle">' +
                         '<h2>' + reviews[i][0] + '</h2>' +

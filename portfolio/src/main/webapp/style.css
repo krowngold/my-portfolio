@@ -333,7 +333,8 @@
     border-style: solid;
     border-width: 2pt;
     border-radius: 10pt;
-    border-color: lightgray;
+    border-color: black;
+    background-color: #ff9b85;
 }
 
 .movieInfoContainer {
@@ -362,6 +363,9 @@
 .moviePoster img{
     width: 220px;
     height: 326px;
+    border-style: transparent;
+    border-width: 2pt;
+    border-radius: 7pt;
 }
 
 /* Body styling */
