@@ -85,13 +85,8 @@ function addRandomGreeting() {
         return imgCache.cache[imgCache.index];
     }
 
-    window.onload = function() {
-        /*
-            Prepare the main photo in the photoViewArea
-        */
-        let id = "photoViewArea";
+    window.addEventListener('load', (event) => {
         let el = document.getElementById("photoViewArea");
-        let imgc = new imageCache();
-        el.src = imgc.getImage(id);
-    }
+        el.src = "../images/noah.png";
+    });
 }

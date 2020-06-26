@@ -408,53 +408,6 @@
     border-style: transparent;
     border-width: 2pt;
     border-radius: 7pt;
-
-/* Blog styling */
-
-.blogContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-}
-
-.blogEntry {
-    border-style: solid;
-    border-width: 2px;
-    border-color: lightgray;
-    box-shadow: 5px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    width: 60%;
-}
-
-.blogHeaderContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family: Verdana, Geneva, sans-serif;
-    width: 100%;
-}
-
-.blogDate {
-    display: flex;
-    align-self: flex-end;
-    padding-right: 1%;
-}
-
-.blogTitle {
-    display: flex;
-    align-self: flex-start;
-    padding-left: 1%;
-}
-
-.blogContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 3%;
-
 }
 
 /* Body styling */
