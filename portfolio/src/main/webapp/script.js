@@ -90,3 +90,10 @@ function addRandomGreeting() {
         el.src = "../images/noah.png";
     });
 }
+
+async function getHelloWorld() {
+    console.log("Getting Hello World!");
+    const message = await fetch('/data');
+    const promise = await message.text();
+    document.getElementById('hello_world_button').innerHTML = promise;
+}
