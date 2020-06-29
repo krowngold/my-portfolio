@@ -87,13 +87,16 @@ function addRandomGreeting() {
 
     window.addEventListener('load', (event) => {
         let el = document.getElementById("photoViewArea");
-        el.src = "../images/noah.png";
+        if (el != null) {
+            el.src = "../images/noah.png";
+        }
     });
-}
 
-async function getHelloWorld() {
-    console.log("Getting Hello World!");
-    const message = await fetch('/data');
-    const promise = await message.text();
-    document.getElementById('hello_world_button').innerHTML = promise;
+    function getMessages() {
+        fetch('/data').then(response => response.json()).then((messages) => {
+            console.log(messages);
+            let testArea = document.getElementById('tutorial');
+            testArea.innerText += messages;
+        });
+    }
 }
