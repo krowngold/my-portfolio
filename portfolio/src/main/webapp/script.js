@@ -134,9 +134,13 @@ async function getHelloWorld() {
     // return commentContainer;
 // }
 
-function loadComments() {
-    fetch('/list-comments').then(response => response.json()).then((comments) => {
+function loadComments(maxInput) {
+    fetch('/list-comments?max=' + maxInput)
+    .then(response => response.json())
+    .then((comments) => {
         const commentArea = document.getElementById("comments");
+        document.getElementById("max-input").value = '';
+        commentArea.innerHTML = "";
         comments.forEach((comment) => {
             commentArea.appendChild(createCommentElement(comment));
         })
@@ -156,4 +160,14 @@ function createCommentElement (comment) {
     commentContainer.appendChild(commentName);
     commentContainer.appendChild(commentContent);
     return commentContainer;
+}
+
+function deleteAllComments() {
+    fetch("/delete-data", {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then((deletion) => {
+        loadComments(0);
+    });
 }

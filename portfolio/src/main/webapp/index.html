@@ -118,12 +118,14 @@
             <input type="submit">
         </form>
 
-        <!-- <form action="/data" method="POST">
-            <label for="max-input">Maximum number of comments (>0):</label>
-            <input type="number" id="max-input" name="max" min="1" defaultValue="1">
-            <input type="submit" value="Load comments">
-        </form>
-        <button onclick="getHelloWorld()" id="hello_world_button">HELLO PLACEHOLDER :D</button> -->
+        <label for="max-Input">Maximum number of comments: </label>
+        <input type="number" id="max-input" name="max" min="0" defaultValue="0">
+        <button 
+        onclick="loadComments(document.getElementById('max-input').value);"
+        >
+            Submit
+        </button>
+        <button onclick="deleteAllComments();">Delete All Comments</button>
     </div>
 
     <!-- Footer for related links and contact information -->
