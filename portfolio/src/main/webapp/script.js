@@ -87,13 +87,73 @@ function addRandomGreeting() {
 
     window.addEventListener('load', (event) => {
         let el = document.getElementById("photoViewArea");
-        el.src = "../images/noah.png";
+        if (el != null) {
+            el.src = "../images/noah.png";
+        }
+        if (document.getElementById('comments') != null) {
+            loadComments();
+        }
     });
 }
 
 async function getHelloWorld() {
     console.log("Getting Hello World!");
-    const message = await fetch('/data');
+    const message = await fetch('/data?max=3');
     const promise = await message.text();
     document.getElementById('hello_world_button').innerHTML = promise;
+}
+
+// async function loadComments() {
+//     console.log("Getting comments");
+
+//     //gather data for each element to be created
+//     let commentPlacementArea = document.getElementById('comments');
+//     let el = document.getElementById('max-input');
+//     // let maxInput = el.value;
+//     const fetchedComments = await fetch('/data');
+//     const commentsText = await fetchedComments.text();
+//     console.log(commentsText);
+//     console.log("fetching messages");
+
+//     for (let comment in commentsText) {
+//         commentPlacementArea.appendChild(createComment(comment));
+//     }
+// }
+
+// function createComment(comment) {
+    // //create outline for comment template
+    // const commentContainer = document.createElement('div');
+    // const commentName = document.createElement('h4');
+    // const commentContent = document.createElement('h6');
+    // console.log(comment);
+    // commentName.innerText = comment.name;
+    // commentContent.innerText = comment.comment;
+
+    // commentContainer.appendChild(commentName);
+    // commentContainer.appendChild(commentContent);
+    // return commentContainer;
+// }
+
+function loadComments() {
+    fetch('/list-comments').then(response => response.json()).then((comments) => {
+        const commentArea = document.getElementById("comments");
+        comments.forEach((comment) => {
+            commentArea.appendChild(createCommentElement(comment));
+        })
+    });
+}
+
+function createCommentElement (comment) {
+    //create outline for comment template
+    const commentContainer = document.createElement('div');
+    const commentName = document.createElement('h4');
+    const commentContent = document.createElement('h5');
+    console.log(comment);
+    
+    commentName.innerText = comment.name;
+    commentContent.innerText = comment.content;
+
+    commentContainer.appendChild(commentName);
+    commentContainer.appendChild(commentContent);
+    return commentContainer;
 }
