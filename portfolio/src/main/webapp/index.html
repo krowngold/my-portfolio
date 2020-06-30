@@ -105,7 +105,16 @@
                 </div>
             </div>
         </div>
+
+        <label for="max-Input">Maximum number of comments: </label>
+        <input type="number" id="max-input" name="max" min="0" defaultValue="0">
+        <button 
+        onclick="loadComments(document.getElementById('max-input').value);"
+        >
+            Submit
+        </button>
         <div class="comments" id="comments"></div>
+        
         <form action="/data" method = "POST">
             <p>Enter your name:</p>
             <textarea name="name-input"></textarea>
@@ -118,15 +127,7 @@
             <input type="submit">
         </form>
 
-        <label for="max-Input">Maximum number of comments: </label>
-        <input type="number" id="max-input" name="max" min="0" defaultValue="0">
-        <button 
-        onclick="loadComments(document.getElementById('max-input').value);"
-        >
-            Submit
-        </button>
         <button onclick="deleteAllComments();">Delete All Comments</button>
-        <div class="tutorialTesting" id="tutorial"></div>
     </div>
 
     <!-- Footer for related links and contact information -->

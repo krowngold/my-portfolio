@@ -36,62 +36,23 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  /* 
-    Get a list of messages to cooperate with the tutorial
-  */
-  private List<String> getMessages() {
-      List<String> messages = new ArrayList<>();
-      messages.add("Hi! How are you doing?");
-      messages.add("It's raining in Seattle :(");
-      messages.add("What's hobbies do you have?");
-      return messages;
-  }
-
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     //Get inputs from the form
     String name = getParameter(request, "name-input", "");
     String comment = getParameter(request, "comment-input", "");
+    long timestamp = System.currentTimeMillis();
 
     //Create comment entity for datastore
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("name", name);
     commentEntity.setProperty("comment", comment);
+    commentEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
     response.sendRedirect("/index.html");
-  }
-
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
-    }
-    return value;
-  
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Gson gson = new Gson();
-    String jsonMessage = gson.toJson(getMessages());
-    response.setContentType("application/json");
-    response.getWriter().println(jsonMessage);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //Get inputs from the form
-    String name = getParameter(request, "name-input", "");
-    String comment = getParameter(request, "comment-input", "");
-
-    List<String> commentForm = new ArrayList<>();
-    commentForm.add(name);
-    commentForm.add(comment);
-
-    //Respond with the result
-    response.setContentType("text/html");
-    response.getWriter().println(commentForm);
   }
 
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {

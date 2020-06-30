@@ -12,24 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['I earned my Eagle Scout rank at 14 years old!', 
-      'In the fourth grade I won 4th place in a local chess tournament', 
-      "I played varsity tennis in high school", 
-      'I have been to 11 states!'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-};
-
 {
 
     function imageCache() {
@@ -94,13 +76,6 @@ function addRandomGreeting() {
             loadComments(1);
         }
     });
-}
-
-async function getHelloWorld() {
-    console.log("Getting Hello World!");
-    const message = await fetch('/data?max=3');
-    const promise = await message.text();
-    document.getElementById('hello_world_button').innerHTML = promise;
 }
 
 async function loadComments(maxInput) {

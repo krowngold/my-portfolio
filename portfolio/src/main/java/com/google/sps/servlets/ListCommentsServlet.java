@@ -34,7 +34,8 @@ public class ListCommentsServlet extends HttpServlet {
             return;
         }
         
-        Query query = new Query("Comment");
+        //get the type of the comments to be found from the request parameters
+        Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
         DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = ds.prepare(query);
 
@@ -46,7 +47,8 @@ public class ListCommentsServlet extends HttpServlet {
             }
             String name = (String) entity.getProperty("name");
             String content = (String) entity.getProperty("comment");
-            Comment comment = new Comment(name, content);
+            long timestamp = (long) entity.getProperty("timestamp");
+            Comment comment = new Comment(name, content, timestamp);
             comments.add(comment);
             i++;
         }
