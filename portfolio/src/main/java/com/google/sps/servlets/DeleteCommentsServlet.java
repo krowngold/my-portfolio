@@ -25,13 +25,21 @@ public class DeleteCommentsServlet extends HttpServlet {
         Query query = new Query("Comment");
         DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = ds.prepare(query);
+        Gson gson = new Gson();
+        String[] keyErrorArr = new String[]{"error", "entity key could not be found"};
 
         for (Entity entity: results.asIterable()) {
-            ds.delete(entity.getKey());
+            try {
+                ds.delete(entity.getKey());
+            } catch (NullPointerException e) {
+                //Signal that entity key doesn't exist
+                response.setContentType("application/json");
+                response.getWriter().println(gson.toJson(keyErrorArr));
+                return;
+            }
         }
 
-        Gson gson = new Gson();
-        response.setContentType("applciation/json");
+        response.setContentType("application/json");
         response.getWriter().println(gson.toJson(""));
     }
 }

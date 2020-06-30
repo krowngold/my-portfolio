@@ -23,12 +23,15 @@ public class ListCommentsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String maxInputString = request.getParameter("max");
+        String[] parseErrorArr = new String[]{"error", "maxInput could not be parsed correctly"};
+        Gson gson = new Gson();
         int maxInput;
         try {
             maxInput = Integer.parseInt(maxInputString);
         } catch (NumberFormatException e) {
-            System.err.println("No number found. Using default value of 0.");
-            maxInput = 0;
+            response.setContentType("application/json");
+            response.getWriter().println(gson.toJson(parseErrorArr));
+            return;
         }
         
         Query query = new Query("Comment");
@@ -48,7 +51,6 @@ public class ListCommentsServlet extends HttpServlet {
             i++;
         }
 
-        Gson gson = new Gson();
         response.setContentType("application/json");
         response.getWriter().println(gson.toJson(comments));
     }
