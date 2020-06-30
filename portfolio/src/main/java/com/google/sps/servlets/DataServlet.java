@@ -57,7 +57,7 @@ public class DataServlet extends HttpServlet {
     commentForm.add(comment);
 
     //Respond with the result
-    response.setContentType("text/html;");
+    response.setContentType("text/html");
     response.getWriter().println(commentForm);
   }
 
