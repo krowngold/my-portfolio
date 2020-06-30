@@ -94,7 +94,6 @@ function addRandomGreeting() {
             loadComments(1);
         }
     });
-}
 
 async function getHelloWorld() {
     console.log("Getting Hello World!");
