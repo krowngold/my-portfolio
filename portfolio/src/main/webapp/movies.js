@@ -21,7 +21,7 @@
                     "previously set up in canon or is clearly included for action " +
                     "value. Sure, you can see the movie for the action sequences, but " +
                     "even just shutting the brain off and gawking at explosions " +
-                    "doesn't work in this instance because ofhow pointless it is " +
+                    "doesn't work in this instance because of how pointless it is " +
                     "to fight such a powerful terminator. The acting from all parties " +
                     "is dry and the only high points are heavily reliant on quotes from " +
                     "earlier entries in the series. Terminator truly has met a dark fate."
@@ -66,7 +66,7 @@
                     "excellent shots that will leave you wondering how Vince Gilligan " +
                     "managed to get everything into frame. While the cinematography remains " +
                     "a high point for Gilligan's work, the film drags to numerous moments " +
-                    "in the build-up to the next set piece. Breaking Bad fans will find " +
+                    "in the build-up to the next set piece. Breaking Bad fans will " +
                     "find solace in Aaron Paul's acting distinguishing himself from his " +
                     "peers as his raw emotion and debilitation flood the screen. The acting " +
                     "and visuals satisfies the Breaking Bad itch, but the pacing slows the " +

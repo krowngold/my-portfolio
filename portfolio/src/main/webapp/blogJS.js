@@ -17,13 +17,13 @@
                     "speak to each other as a bystander, which the audience inherently "+
                     "is, cutting between views of characters would quickly become "+
                     "repetitive as your neck reenacts a tennis match. Yet, directors "+
-                    "seem deadset on including as many cuts as they can to focus on "+
+                    "seem dead set on including as many cuts as they can to focus on "+
                     "a character's face; this is understandable and warranted to a "+
                     "certain degree, but overdoing this technique stales quickly.  "+
                     "Instead, conversations should give the audience a perspective on "+
                     "the character's body language to better communicate reaction "+
                     "instead of relying on facial expressions to depict emotion. "+
-                    "The importance of body langauge in conversation can' be stated "+
+                    "The importance of body language in conversation can' be stated "+
                     "enough, and to remove that element from a conversation leaves "+
                     "the audience with less information to build opinions on. "
                 ]
@@ -61,7 +61,7 @@
                     "to finish it. I guess that's a testament to how terrible the film "+
                     "is. <br> Spike Lee's movie dragged on for so many scenes while also "+
                     "ignoring plot points that were established early on. The dialogue "+
-                    "was also insufferable at times, with characters commiting violent "+
+                    "was also insufferable at times, with characters committing violent "+
                     "acts for little to no reason, creating a hodgepodge of events that "+
                     "don't coherently contribute to the themes of strength and unity. "+
                     "While the commentary on masculinity after the Vietnam war is potent "+
