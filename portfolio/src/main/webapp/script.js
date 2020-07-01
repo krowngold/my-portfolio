@@ -86,24 +86,20 @@ async function loadComments(maxInput) {
         document.getElementById("max-input").value = '';
         commentArea.innerHTML = "";
         comments.forEach((comment) => {
-            commentArea.appendChild(createCommentElement(comment));
+            commentArea.innerHTML += createCommentElement(comment);
         })
     });
 }
 
 function createCommentElement (comment) {
     //create outline for comment template
-    const commentContainer = document.createElement('div');
-    const commentName = document.createElement('h4');
-    const commentContent = document.createElement('h5');
-    console.log(comment);
-    
-    commentName.innerText = comment.name;
-    commentContent.innerText = comment.content;
-
-    commentContainer.appendChild(commentName);
-    commentContainer.appendChild(commentContent);
-    return commentContainer;
+    let commentTemplate = [
+        '<div class="comment">' +
+            '<h4 class="commenter">' + comment.name + '</h4>' +
+            '<h5 class="commentContent">' + comment.content + '</h5>' +
+        '</div>'
+    ];
+    return commentTemplate;
 }
 
 function deleteAllComments() {
