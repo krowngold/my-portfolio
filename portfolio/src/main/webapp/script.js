@@ -72,19 +72,23 @@
         if (el != null) {
             el.src = "../images/noah.png";
         }
-        if (document.getElementById('comments') != null) {
-            loadComments(1);
+        if (document.getElementById('comments') != null && 
+            document.getElementById('max-input').value == "") {
+            loadComments(0);
         }
     });
 }
 
 async function loadComments(maxInput) {
+    if (document.getElementById("max-input").value == "") {
+        maxInput = "0"; //default value to signal no query needed
+    }
     fetch('/list-comments?max=' + maxInput)
     .then(response => response.json())
     .then((comments) => {
         const commentArea = document.getElementById("comments");
         document.getElementById("max-input").value = '';
-        commentArea.innerHTML = "";
+        commentArea.innerHTML = "<h3>Comments</h3>";
         comments.forEach((comment) => {
             commentArea.innerHTML += createCommentElement(comment);
         })
@@ -95,8 +99,8 @@ function createCommentElement (comment) {
     //create outline for comment template
     let commentTemplate = [
         '<div class="comment">' +
-            '<h4 class="commenter">' + comment.name + '</h4>' +
-            '<h5 class="commentContent">' + comment.content + '</h5>' +
+            '<h5 class="commenter">' + comment.name + '</h5>' +
+            '<h4 class="commentContent">' + comment.content + '</h4>' +
         '</div>'
     ];
     return commentTemplate;
@@ -108,6 +112,7 @@ function deleteAllComments() {
     })
     .then(response => response.json())
     .then((deletion) => {
+        console.log("deleted comments");
         loadComments(0);
     });
 }

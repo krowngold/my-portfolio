@@ -35,6 +35,7 @@ public class DeleteCommentsServlet extends HttpServlet {
                 //Signal that entity key doesn't exist
                 response.setContentType("application/json");
                 response.getWriter().println(gson.toJson(keyErrorArr));
+                System.err.println("entity key could not be found");
                 return;
             }
         }
