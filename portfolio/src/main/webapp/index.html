@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Noah's Portfolio</title>
     <link rel="stylesheet" href="style.css">
@@ -105,6 +106,16 @@
                 </div>
             </div>
         </div>
+
+        <label for="max-Input">Maximum number of comments: </label>
+        <input type="number" id="max-input" name="max" min="0" defaultValue="0">
+        <button 
+        onclick="loadComments(document.getElementById('max-input').value);"
+        >
+            Submit
+        </button>
+        <div class="comments" id="comments"></div>
+        
         <form action="/data" method = "POST">
             <p>Enter your name:</p>
             <textarea name="name-input"></textarea>
@@ -116,8 +127,8 @@
 
             <input type="submit">
         </form>
-        <button onclick="getHelloWorld()" id="hello_world_button">HELLO PLACEHOLDER :D</button>
-        <div class="tutorialTesting" id="tutorial"></div>
+
+        <button onclick="deleteAllComments();">Delete All Comments</button>
     </div>
 
     <!-- Footer for related links and contact information -->

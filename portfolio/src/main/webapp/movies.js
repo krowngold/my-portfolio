@@ -36,7 +36,7 @@
                     "Cast: Joaquin Phoenix, Robert De Niro, Zazie Beetz<br>" +
                     "Runtime: 122 minutes"
                 ],
-                date: "October 7th 2019",
+                date: "October, 7th 2019",
                 content: [
                     "Joaquin Phoenix gives one of the best performances of the year " +
                     "and manages to personify Joker as well as - if not better than - " +

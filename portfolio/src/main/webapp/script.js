@@ -12,24 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['I earned my Eagle Scout rank at 14 years old!', 
-      'In the fourth grade I won 4th place in a local chess tournament', 
-      "I played varsity tennis in high school", 
-      'I have been to 11 states!'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-};
-
 {
 
     function imageCache() {
@@ -90,13 +72,42 @@ function addRandomGreeting() {
         if (el != null) {
             el.src = "../images/noah.png";
         }
+        if (document.getElementById('comments') != null) {
+            loadComments(1);
+        }
     });
+}
 
-    function getMessages() {
-        fetch('/data').then(response => response.json()).then((messages) => {
-            console.log(messages);
-            let testArea = document.getElementById('tutorial');
-            testArea.innerText += messages;
-        });
-    }
+async function loadComments(maxInput) {
+    fetch('/list-comments?max=' + maxInput)
+    .then(response => response.json())
+    .then((comments) => {
+        const commentArea = document.getElementById("comments");
+        document.getElementById("max-input").value = '';
+        commentArea.innerHTML = "";
+        comments.forEach((comment) => {
+            commentArea.innerHTML += createCommentElement(comment);
+        })
+    });
+}
+
+function createCommentElement (comment) {
+    //create outline for comment template
+    let commentTemplate = [
+        '<div class="comment">' +
+            '<h4 class="commenter">' + comment.name + '</h4>' +
+            '<h5 class="commentContent">' + comment.content + '</h5>' +
+        '</div>'
+    ];
+    return commentTemplate;
+}
+
+function deleteAllComments() {
+    fetch("/delete-data", {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then((deletion) => {
+        loadComments(0);
+    });
 }
