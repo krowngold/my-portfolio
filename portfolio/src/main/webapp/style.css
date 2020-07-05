@@ -371,6 +371,73 @@
     border-radius: 7pt;
 }
 
+/* Comments styling */
+
+.maxInputArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.maxInputArea input {
+    width: 5%;
+    padding: 0;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin: 1%;
+}
+
+.comment {
+    padding: 1.5%;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    border-radius: 10px;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+
+.newCommentEntry {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    border-radius: 10px;
+    margin: 1%;
+}
+
+.newCommentEntry form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameEntry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between;
+}
+
+.commentEntry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between;
+    margin: 3%;
+}
+
 /* Body styling */
 
 body {

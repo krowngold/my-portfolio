@@ -23,15 +23,20 @@ public class ListCommentsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String maxInputString = request.getParameter("max");
-        String[] parseErrorArr = new String[]{"error", "maxInput could not be parsed correctly"};
         Gson gson = new Gson();
+        response.setContentType("application/json");
         int maxInput;
         try {
             maxInput = Integer.parseInt(maxInputString);
         } catch (NumberFormatException e) {
-            response.setContentType("application/json");
-            response.getWriter().println(gson.toJson(parseErrorArr));
+            response.getWriter().println(gson.toJson(""));
+            System.err.println("Poor number format. Returning with nothing.");
             return;
+        }
+
+        if (maxInput == 0) {
+            response.getWriter().println(gson.toJson(""));
+            return; //early return to prevent unnecessary data reads
         }
         
         //get the type of the comments to be found from the request parameters
@@ -39,6 +44,7 @@ public class ListCommentsServlet extends HttpServlet {
         DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = ds.prepare(query);
 
+        //Create all comments to be returned from query
         List<Comment> comments = new ArrayList<>();
         int i = 0;
         for (Entity entity : results.asIterable()) {
@@ -53,7 +59,6 @@ public class ListCommentsServlet extends HttpServlet {
             i++;
         }
 
-        response.setContentType("application/json");
         response.getWriter().println(gson.toJson(comments));
     }
 }
