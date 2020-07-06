@@ -76,6 +76,9 @@
             document.getElementById('max-input').value == "") {
             loadComments(0);
         }
+        if (document.getElementById('map') != null) {
+            initMap();
+        }
     });
 }
 
@@ -115,4 +118,11 @@ function deleteAllComments() {
         console.log("deleted comments");
         loadComments(0);
     });
+}
+
+function initMap() {
+    const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 37.422, lng: -122.084}, zoom: 16}
+    );
 }
