@@ -308,7 +308,7 @@
 .librariesContainer {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin-bottom: 3%;
     margin-top: 3%;
@@ -318,10 +318,17 @@
     height: 500px;
     width: 500px;
     border: thin solid black;
+    margin: 0.5%;
 }
 
 #chart {
     border: thin solid black;
+    margin: 0.5%;
+}
+
+#chart2 {
+    border: thin solid black;
+    margin: 0.5%;
 }
 
 /* Movie reviews styling */
