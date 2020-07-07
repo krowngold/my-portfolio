@@ -16,17 +16,26 @@ public class PlayStoreDataServlet extends HttpServlet {
 
     private ArrayList<ArrayList<Double>> playStoreReviews = new ArrayList<ArrayList<Double>>();
 
+    //Gather data from CSV file through Scanner
     @Override
     public void init() {
-        Scanner scanner = new Scanner(getServletContext().getResourceAsStream(
-            "/WEB-INF/PlayStore.csv"));
+        final Scanner scanner = new Scanner(getServletContext().getResourceAsStream(
+        "/WEB-INF/PlayStore.csv"));
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] cells = line.split(",");
+            Double rating;
+            Double installs;
 
-            Double rating = Double.valueOf(cells[0]);
-            Double installs = Double.valueOf(cells[1]);
-
+            try {
+                rating = Double.valueOf(cells[0]);
+                installs = Double.valueOf(cells[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.err.println("Split didn't result in proper number of cells");
+                rating = 0.0;
+                installs = 0.0;
+            }
+            
             ArrayList<Double> appReview = new ArrayList<>();
             appReview.add(rating);
             appReview.add(installs);
