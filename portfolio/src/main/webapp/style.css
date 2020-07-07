@@ -245,17 +245,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2%;
 }
 
 #photoViewArea {
     width: 900px;
     height: 700px;
     padding: 4%;
-}
-
-#rightArrow {
-    padding-left: 3%;
 }
 
 .preferencesContainer {
@@ -271,7 +266,6 @@
     flex-direction: row;
     flex: 1;
 }
-
 
 .leftPhotoExplanation img {
     display: flex;
@@ -307,6 +301,27 @@
     background-color: #4f5f82;
     font-family: Verdana, Geneva, sans-serif;
     padding: 10%;
+}
+
+/* Libraries styling */
+
+.librariesContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+#map {
+    height: 500px;
+    width: 500px;
+    border: thin solid black;
+}
+
+#chart {
+    border: thin solid black;
 }
 
 /* Movie reviews styling */
@@ -458,11 +473,4 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
  font-family: 'Archivo Black', sans-serif;
-}
-
-#map {
-    height: 500px;
-    width: 500px;
-    border: thin solid black;
-    margin-bottom: 3%;
 }
