@@ -383,7 +383,8 @@ function createMapScript() {
             ],
             {name: 'Styled Map'}
         );
-        const map = new google.maps.Map(
+        fetch("/marker-data").then(response => response.json()).then((mapMarkers) => {
+            const map = new google.maps.Map(
             document.getElementById('map'),
             {
                 center: {lat: 47.454364, lng: -122.167713},
@@ -396,110 +397,48 @@ function createMapScript() {
                     mapTypeIds: ['styled_map']
                 }
             }
-        );
-        addMarkers(map);
-        map.mapTypes.set('styled_map', styledMapType);
-        map.setMapTypeId('styled_map');
+            );
+            // addMarkers(map);
+            mapMarkers.forEach((mapMarker) => {
+                console.log(mapMarker);
+                var marker;
+                if (mapMarker.imgLink !== " ") {
+                    var logo = {
+                        url: mapMarker.imgLink,
+                        scaledSize: new google.maps.Size(50,50),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(0, 0)
+                    }
+                    marker = new google.maps.Marker(
+                        {
+                            position: {lat: mapMarker.lat, lng: mapMarker.lng},
+                            map: map,
+                            icon: logo
+                        }
+                    )
+                }
+                else {
+                    marker = new google.maps.Marker(
+                        {
+                            position: {lat: mapMarker.lat, lng: mapMarker.lng},
+                            map: map,
+                        }
+                    )
+                }
+                var infoWindow = new google.maps.InfoWindow({
+                    content: mapMarker.content
+                });
+                marker.addListener("click", function() {
+                    infoWindow.open(map, marker);
+                });
+            });
+
+            map.mapTypes.set('styled_map', styledMapType);
+            map.setMapTypeId('styled_map');
+        })
+
     };
 
     // Append the 'script' element to 'head'
     document.head.appendChild(script);
-}
-
-function addMarkers(map) {
-    var lindbergh = {lat: 47.454364, lng: -122.167713};
-    var landing = {lat: 47.498154, lng: -122.202927};
-    var cse2 = {lat: 47.653063, lng: -122.305106};
-
-    var lhsImage = {
-        url: 'https://www.wpastatic.com/lib/ePoster/schools/155/school_logo_08272019220901.png',
-        scaledSize: new google.maps.Size(50,50),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(0, 0)
-    };
-
-    var washingtonLogo = {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/3/36/University_of_Washington_Block_W_logo_RGB_brand_colors.SVG',
-        scaledSize: new google.maps.Size(50,50),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(0, 0)
-    };
-
-    var lindberghMarker = new google.maps.Marker(
-        {
-            position: lindbergh, 
-            map: map,
-            icon: lhsImage
-    });
-
-    var landingMarker = new google.maps.Marker(
-        {
-            position: landing, 
-            map: map
-    });
-
-    var cse2Marker = new google.maps.Marker(
-        {
-            position: cse2, 
-            map: map,
-            icon: washingtonLogo
-    });
-
-    var lindberghContent = '<h1>Lindbergh High School</h1><br>' +
-        '<p>Lindbergh High School is a (senior) high school located in the ' +
-        'southeastern section of Renton, Washington, a suburb of Seattle, in ' +
-        'the Renton School District. It is named after Charles A. Lindbergh, ' +
-        'the famous aviator who was first to fly solo across the Atlantic in ' +
-        '1927. The school was founded in 1972. Freshmen, sophomores and ' +
-        'juniors attended the first year, making the class of 1974 the first ' +
-        'to graduate. Lindbergh\'s school motto is ad astra, which is Latin ' +
-        'for "to the stars". The crest features the Spirit of St. Louis (the ' +
-        'plane that Charles Lindbergh flew), and the school\'s motto flanked ' +
-        'by stars with the dates 1927 and 1972, respectively.</p>';
-    
-    var landingContent = '<h1>The Landing</h1><br>' +
-        '<p>Renton\'s main outdoor mall, halfway between the Highlands and ' +
-        'Downtown. In addition to being within walking distance of Coulon ' +
-        'Beach Park, there are lots of great shops and restaurants, and ' +
-        'it\'s generally considered to be a great place to hang out.</p>';
-
-    var cse2Content = '<h1>The Bill and Melinda Gates Center</h1><br>' +
-        '<p>The Bill & Melinda Gates Center for Computer Science & ' +
-        'Engineering (Gates Center) contains classroom, office, and ' +
-        'collaborative spaces, expanded research labs, a 250-seat ' +
-        'auditorium, and a flexible event space. The facility enabled the ' +
-        'Paul G. Allen School of Computer Science & Engineering to double ' +
-        'its annual degree production. Adjacent to the existing Paul G. ' +
-        'Allen Center for Computer Science & Engineering (Allen Center), ' +
-        'the two buildings provide an integrated education and research ' +
-        'experience for the Allen School. The Gates Center includes a ' +
-        'sophisticated maker space, an undergraduate commons that will ' +
-        'serve as a “home away from home” for students enrolled in the ' +
-        'major, a wet lab for leading-edge research in molecular ' +
-        'information systems, a 3,000 square foot robotics lab, workrooms ' +
-        'for the interdisciplinary computer animation capstone, and ' +
-        'interview rooms where industry representatives can meet with ' +
-        'students.</p>';
-
-    var lindberghIW = new google.maps.InfoWindow({
-        content: lindberghContent
-    });
-
-    var landingIW = new google.maps.InfoWindow({
-        content: landingContent
-    });
-
-    var cse2IW = new google.maps.InfoWindow({
-        content: cse2Content
-    })
-
-    lindberghMarker.addListener('click', function() {
-        lindberghIW.open(map, lindberghMarker);
-    });
-    landingMarker.addListener('click', function() {
-        landingIW.open(map, landingMarker);
-    });
-    cse2Marker.addListener('click', function() {
-        cse2IW.open(map, cse2Marker);
-    })
 }
