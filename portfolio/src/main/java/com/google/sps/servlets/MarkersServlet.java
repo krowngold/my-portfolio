@@ -25,17 +25,27 @@ public class MarkersServlet extends HttpServlet {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] cells = line.split(",");
-            if (cells.length != 0) {
-                double lat = Double.parseDouble(cells[0]);
-                double lng = Double.parseDouble(cells[1]);
-                String link = "" + cells[2];
-                String content = "";
+            double lat;
+            double lng;
+            String link;
+            String content;
+
+            try {
+                lat = Double.parseDouble(cells[0]);
+                lng = Double.parseDouble(cells[1]);
+                link = "" + cells[2];
+                content = "";
                 for (int i = 3; i < cells.length; i++) {
                     content += cells[i];
                 }
-
-                mapMarkers.add(new MapMarker(lat, lng, link, content));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.err.println("Split didn't produce enough items for the marker.")
+                lat = 0.0;
+                lng = 0.0;
+                link = "";
             }
+
+            mapMarkers.add(new MapMarker(lat, lng, link, content));
         }
         scanner.close();
     }
