@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 public class PlayStoreDataServlet extends HttpServlet {
 
     private ArrayList<ArrayList<Double>> playStoreReviews = new ArrayList<ArrayList<Double>>();
+    private static final String resource = "/WEB-INF/PlayStore.csv";
 
     //Gather data from CSV file through Scanner
     @Override
     public void init() {
-        final Scanner scanner = new Scanner(getServletContext().getResourceAsStream(
-        "/WEB-INF/PlayStore.csv"));
+        Scanner scanner = new Scanner(getServletContext().getResourceAsStream(resource));
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] cells = line.split(",");
