@@ -14,10 +14,92 @@
 
 package com.google.sps;
 
+import java.util.Collections;
 import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.TreeSet;
 
 public final class FindMeetingQuery {
-  public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
-  }
+    public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
+        List<TimeRange> reservedMeetings = new ArrayList<>(); //times that aren't available
+        List<TimeRange> availableMeetings = new ArrayList<>(); //times to be returned for query
+
+        findConflicts(reservedMeetings, events, request);
+        condenseTimeConflicts(reservedMeetings);
+        return findFreeSlots(reservedMeetings, availableMeetings, request.getDuration());
+        
+
+    }
+
+    //find all times that conflict with attendess of given request
+    private void findConflicts(List<TimeRange> reservedMeetings, 
+        Collection<Event> events, MeetingRequest request) {
+        for (Event event : events) {
+            TimeRange time = event.getWhen();
+            for (String attendee : request.getAttendees()) {
+                if (!reservedMeetings.contains(time) &&
+                    event.getAttendees().contains(attendee) && 
+                    time.duration() > 0 ) {
+                    reservedMeetings.add(time);
+                }
+            }
+        }
+        Collections.sort(reservedMeetings, TimeRange.ORDER_BY_START);
+    }
+
+    //condense all the redundant times that conflict with current request
+    private void condenseTimeConflicts(List<TimeRange> reservedMeetings) {
+        int i = 0;
+        while (i < reservedMeetings.size()-1) {
+            TimeRange firstTime = reservedMeetings.get(i);
+            TimeRange secondTime = reservedMeetings.get(i+1);
+            if (firstTime.overlaps(secondTime)) {
+                if (firstTime.contains(secondTime.start()) 
+                    && firstTime.contains(secondTime.end())) {
+                    reservedMeetings.remove(i+1);
+                }
+                else {
+                    TimeRange condensedTime = TimeRange.fromStartEnd(
+                        firstTime.start(), secondTime.end(), false);
+                    reservedMeetings.add(i, condensedTime);
+                    reservedMeetings.remove(i+2);
+                    reservedMeetings.remove(i+1);
+                }
+            }
+            else {
+                i++;
+            }
+        }
+    }
+
+    private Collection<TimeRange> findFreeSlots(List<TimeRange> reservedMeetings,
+        List<TimeRange> availableMeetings, long duration) {
+        if (reservedMeetings.size() > 0) { //conflicts present, find available times
+            TimeRange temp = TimeRange.fromStartEnd(0, reservedMeetings.get(0).start(), false);
+            if (temp.duration() >= duration) { //check if space between day start and first meeting is large enough
+                availableMeetings.add(temp);
+            }
+            temp = TimeRange.fromStartEnd(reservedMeetings.get(reservedMeetings.size() - 1).end(),
+                TimeRange.END_OF_DAY, true);
+            if (temp.duration() >= duration) { //check if space between day end and first meeting is large enough
+                availableMeetings.add(temp);
+            }
+            for (int j = 0; j < reservedMeetings.size() - 1; j++) {
+                temp = TimeRange.fromStartDuration(
+                    reservedMeetings.get(j).end(),
+                    (reservedMeetings.get(j+1).start() - reservedMeetings.get(j).end())
+                );
+                if (temp.duration() >= duration) { //check if space between day end and first meeting is large enough
+                    availableMeetings.add(temp);
+                }
+            }
+        }
+        else if (duration < TimeRange.WHOLE_DAY.duration()){ //no meeting conflicts, whole day is free
+            availableMeetings.add(TimeRange.WHOLE_DAY);
+        }
+        Collections.sort(availableMeetings, TimeRange.ORDER_BY_START);
+        return availableMeetings;
+    }
 }
