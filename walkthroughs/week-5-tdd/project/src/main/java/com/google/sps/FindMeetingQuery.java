@@ -23,19 +23,48 @@ import java.util.TreeSet;
 
 public final class FindMeetingQuery {
     public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-        List<TimeRange> reservedMeetings = new ArrayList<>(); //times that aren't available
-        List<TimeRange> availableMeetings = new ArrayList<>(); //times to be returned for query
-
-        findConflicts(reservedMeetings, events, request);
-        condenseTimeConflicts(reservedMeetings);
-        return findFreeSlots(reservedMeetings, availableMeetings, request.getDuration());
-        
-
+        List<TimeRange> reservedMeetingsMandatory = new ArrayList<>(); //times that aren't available
+        List<TimeRange> availableMeetingsMandatory = new ArrayList<>(); //times to be returned for query
+        List<TimeRange> reservedMeetingsOptional = new ArrayList<>();
+        List<TimeRange> availableMeetingsOptional = new ArrayList<>();
+        findConflicts(reservedMeetingsMandatory, reservedMeetingsOptional, events, request);
+        condenseTimeConflicts(reservedMeetingsMandatory);
+        condenseTimeConflicts(reservedMeetingsOptional);
+        findFreeSlots(reservedMeetingsMandatory, availableMeetingsMandatory, 
+            request.getDuration());
+        findFreeSlots(reservedMeetingsOptional, availableMeetingsOptional,
+            request.getDuration());
+        List<TimeRange> resultingTimes = new ArrayList<>();
+        if (availableMeetingsOptional.size() != 0) {
+            for (TimeRange mTime : availableMeetingsMandatory) {
+                for (TimeRange oTime : availableMeetingsOptional) {
+                    if (mTime.contains(oTime)) {
+                        resultingTimes.add(
+                            TimeRange.fromStartEnd(
+                                oTime.start(), oTime.end(), false)
+                        );
+                    }
+                }
+                if ((resultingTimes.size() > 0 &&
+                    !mTime.contains(resultingTimes.get(resultingTimes.size() - 1)) &&
+                    !reservedMeetingsOptional.contains(mTime)) ||
+                    resultingTimes.size() == 0) {
+                    resultingTimes.add(mTime);
+                }
+            }
+            return resultingTimes;
+        }
+        //return combined list
+        if (request.getAttendees().size() != 0) {
+            return availableMeetingsMandatory;
+        }
+        return new ArrayList<>();
     }
 
     //find all times that conflict with attendess of given request
-    private void findConflicts(List<TimeRange> reservedMeetings, 
-        Collection<Event> events, MeetingRequest request) {
+    private void findConflicts(List<TimeRange> reservedMeetings,
+        List<TimeRange> optionalMeetings, Collection<Event> events, 
+        MeetingRequest request) {
         for (Event event : events) {
             TimeRange time = event.getWhen();
             for (String attendee : request.getAttendees()) {
@@ -45,8 +74,16 @@ public final class FindMeetingQuery {
                     reservedMeetings.add(time);
                 }
             }
+            for (String optAttendee : request.getOptionalAttendees()) {
+                if (!optionalMeetings.contains(time) &&
+                    event.getAttendees().contains(optAttendee) && 
+                    time.duration() > 0 ) {
+                    optionalMeetings.add(time);
+                }
+            }
         }
         Collections.sort(reservedMeetings, TimeRange.ORDER_BY_START);
+        Collections.sort(optionalMeetings, TimeRange.ORDER_BY_START);
     }
 
     //condense all the redundant times that conflict with current request
