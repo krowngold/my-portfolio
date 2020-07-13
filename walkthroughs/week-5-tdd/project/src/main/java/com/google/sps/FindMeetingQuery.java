@@ -35,7 +35,13 @@ public final class FindMeetingQuery {
         findFreeSlots(reservedMeetingsOptional, availableMeetingsOptional,
             request.getDuration());
         List<TimeRange> resultingTimes = new ArrayList<>();
-        if (availableMeetingsOptional.size() != 0) {
+        //No times for either mandatory or optional attendees, return empty collection
+        if (request.getAttendees().isEmpty() && availableMeetingsOptional.isEmpty()) {
+            return new ArrayList<>();
+        }
+        //condense free times for optional and mandatory attendees if
+        //there are available optional meetings
+        if (!availableMeetingsOptional.isEmpty()) {
             for (TimeRange mTime : availableMeetingsMandatory) {
                 for (TimeRange oTime : availableMeetingsOptional) {
                     if (mTime.contains(oTime)) {
@@ -45,20 +51,17 @@ public final class FindMeetingQuery {
                         );
                     }
                 }
-                if ((resultingTimes.size() > 0 &&
+                if ((!resultingTimes.isEmpty() &&
                     !mTime.contains(resultingTimes.get(resultingTimes.size() - 1)) &&
                     !reservedMeetingsOptional.contains(mTime)) ||
-                    resultingTimes.size() == 0) {
+                    resultingTimes.isEmpty()) {
                     resultingTimes.add(mTime);
                 }
             }
             return resultingTimes;
         }
-        //return combined list
-        if (request.getAttendees().size() != 0) {
-            return availableMeetingsMandatory;
-        }
-        return new ArrayList<>();
+        //no optional meetings available so return only mandatory meeting times
+        return availableMeetingsMandatory;
     }
 
     //find all times that conflict with attendess of given request
@@ -92,22 +95,20 @@ public final class FindMeetingQuery {
         while (i < reservedMeetings.size()-1) {
             TimeRange firstTime = reservedMeetings.get(i);
             TimeRange secondTime = reservedMeetings.get(i+1);
-            if (firstTime.overlaps(secondTime)) {
-                if (firstTime.contains(secondTime.start()) 
-                    && firstTime.contains(secondTime.end())) {
-                    reservedMeetings.remove(i+1);
-                }
-                else {
-                    TimeRange condensedTime = TimeRange.fromStartEnd(
-                        firstTime.start(), secondTime.end(), false);
-                    reservedMeetings.add(i, condensedTime);
-                    reservedMeetings.remove(i+2);
-                    reservedMeetings.remove(i+1);
-                }
-            }
-            else {
+            if (!firstTime.overlaps(secondTime)) {
                 i++;
+                continue;
             }
+            if (firstTime.contains(secondTime.start()) 
+                && firstTime.contains(secondTime.end())) {
+                reservedMeetings.remove(i+1);
+                continue;
+            }
+            TimeRange condensedTime = TimeRange.fromStartEnd(
+                firstTime.start(), secondTime.end(), false);
+            reservedMeetings.add(i, condensedTime);
+            reservedMeetings.remove(i+2);
+            reservedMeetings.remove(i+1);
         }
     }
 
