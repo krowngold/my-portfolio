@@ -39,10 +39,11 @@ public class MarkersServlet extends HttpServlet {
                     content += cells[i];
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.err.println("Split didn't produce enough items for the marker.")
+                System.err.println("Split didn't produce enough items for the marker.");
                 lat = 0.0;
                 lng = 0.0;
                 link = "";
+                content = "";
             }
 
             mapMarkers.add(new MapMarker(lat, lng, link, content));
